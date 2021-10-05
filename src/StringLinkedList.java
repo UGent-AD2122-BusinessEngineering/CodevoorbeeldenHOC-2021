@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class StringLinkedList {
     private ListNode head;
 
@@ -6,26 +8,51 @@ public class StringLinkedList {
     }
 
     public void showList(){
+        ListNode node = head;
+        while(node != null){
+            System.out.println(node.getData());
+            node = node.getLink();
+        }
 
     }
 
     public int lenght(){
-        return 0;
+        int lengte = 0;
+        ListNode node = head;
+        while(node != null){
+            lengte++;
+            node = node.getLink();
+        }
+
+        return lengte;
     }
 
-    public void addNodeToStart(String addData){
+    public ListNode find(String target) {
+        ListNode node = head;
+        while (node != null) {
+            if (node.getData().equals(target))
+                return node;
+            node = node.getLink();
 
-    }
-
-    public void deleteHeadNode(){
-
-    }
-
-    public ListNode find(String target){
+        }
         return null;
     }
 
     public boolean onList(String target){
-        return true;
+        return find(target) !=null;
     }
+
+    public void addNodeToStart(String addData){
+        ListNode node = new ListNode(addData, head);
+        head = node;
+
+    }
+
+    //Opgelet controleren of head niet null is
+    public void deleteHeadNode(){
+        head = head.getLink();
+
+    }
+
+
 }

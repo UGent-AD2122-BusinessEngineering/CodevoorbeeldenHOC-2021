@@ -2,23 +2,34 @@ public class LinkedList<E> {
     private ListNode head;
 
     public LinkedList() {
-
+        head = null;
     }
 
     public void showList(){
-
+        ListNode current = head;
+        while(current != null){
+            System.out.println(current.data);
+            current = current.getLink();
+        }
     }
 
     public int length(){
-        return 0;
+        int lengte=  0;
+        ListNode current = head;
+        while(current != null){
+            lengte++;
+            current = current.getLink();
+        }
+        return lengte;
     }
 
     public void addNodeToStart(E addData){
-
+        head= new ListNode(addData, head);
     }
 
     public void deleteHeadNode(){
-
+        if(head !=null)
+            head = head.getLink();
     }
 
     public boolean onList(E target){
