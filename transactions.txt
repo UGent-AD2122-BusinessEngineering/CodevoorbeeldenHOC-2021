@@ -1,0 +1,3 @@
+productID;hoeveelheid;prijs;beschrijving
+456;5;800;iphone 10
+56787;4;200;airpods
