@@ -26,7 +26,7 @@ public class Calculator {
      * of op throws UnknownOpException.
      */
 
-    public double evaluate(char op, double n1, double n2)  {
+    public double evaluate(char op, double n1, double n2) throws DivideByZeroException, UnknownOpException {
         double answer = 0.0;
         switch (op) {
             case '+':
@@ -40,19 +40,17 @@ public class Calculator {
                 break;
             case '/':
                 if ((-precision < n2) && (n2 < precision)){
-                    System.out.println("Delen door nul");
-                    System.exit(0);
+                    throw new DivideByZeroException();
                 }
                 answer = n1 / n2;
                 break;
             default:
-                System.out.println("Delen door nul");
-                System.exit(0);
+                throw new UnknownOpException();
         }
         return answer;
     }
 
-    public void doCalculation()  {
+    public void doCalculation() throws DivideByZeroException, UnknownOpException {
         Scanner keyboard = new Scanner(System.in);
         boolean done = false;
         result = 0;
@@ -79,7 +77,13 @@ public class Calculator {
         System.out.println ("operator space number");
         System.out.println ("For example: + 3");
         System.out.println ("To end, enter the letter e.");
-        clerk.doCalculation ();
+        try {
+            clerk.doCalculation ();
+        } catch (DivideByZeroException e) {
+            e.printStackTrace();
+        } catch (UnknownOpException e) {
+            e.printStackTrace();
+        }
 
         System.out.println ("The final result is " +
                 clerk.getResult());
